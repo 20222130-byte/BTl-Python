@@ -31,3 +31,7 @@ def find_class(ma_lop):
 # Lấy tất cả lớp
 def get_all():
     return class_model.get_all()
+
+# Kiểm tra lớp đã tồn tại chưa
+def class_exists(ma_lop):
+    return class_model.exists_by_id(ma_lop)

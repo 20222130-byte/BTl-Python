@@ -55,6 +55,9 @@ def open_class():
         if not e_ma.get() or not e_ten.get():
             messagebox.showerror("Lỗi", "Nhập đầy đủ!")
             return
+        if class_controller.class_exists(e_ma.get()):
+            messagebox.showerror("Lỗi", "Mã lớp đã tồn tại!")
+            return
         if class_controller.add_class((e_ma.get(), e_ten.get())):
             messagebox.showinfo("OK", "Thêm thành công")
             load()

@@ -36,3 +36,11 @@ def get_all():
     r = c.fetchall()
     conn.close()
     return r
+
+def exists_by_id(id):
+    conn = get_conn()
+    c = conn.cursor()
+    c.execute("SELECT * FROM Student WHERE MaSV=?", (id,))
+    r = c.fetchone()
+    conn.close()
+    return r is not None

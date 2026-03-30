@@ -80,6 +80,9 @@ def open_student():
         if not e_id.get() or not e_name.get():
             messagebox.showerror("Lỗi", "Nhập đầy đủ!")
             return
+        if student_controller.student_exists(e_id.get()):
+            messagebox.showerror("Lỗi", "Mã sinh viên đã tồn tại!")
+            return
         student_controller.add_student(
             (e_id.get(), e_name.get(), e_dob.get(), gender.get(), combo.get()))
         messagebox.showinfo("OK", "Thêm thành công")
