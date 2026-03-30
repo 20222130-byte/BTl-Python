@@ -75,8 +75,8 @@ BTl-Python/
 │   ├── student_view.py          # Giao diện quản lý sinh viên
 │   ├── class_view.py            # Giao diện quản lý lớp
 │   └── score_view.py            # Giao diện quản lý điểm số
-├── database/
-│   └── student_management.db    # File cơ sở dữ liệu SQLite
+├── student.db                   # File cơ sở dữ liệu SQLite
+│   
 └── README.md                    # Tài liệu này
 ```
 
@@ -90,45 +90,40 @@ Dự án sử dụng mô hình **MVC (Model-View-Controller)**:
 
 ## 💾 Cơ Sở Dữ Liệu
 
-### Bảng User
-```sql
-CREATE TABLE User (
-    Username TEXT PRIMARY KEY,
-    Password TEXT NOT NULL
-)
-```
+CREATE DATABASE IF NOT EXISTS student_db;
+USE student_db;
 
-### Bảng Class
-```sql
-CREATE TABLE Class (
-    MaLop TEXT PRIMARY KEY,
-    TenLop TEXT NOT NULL UNIQUE
-)
-```
+-- Bảng users
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE,
+    password VARCHAR(255)
+);
 
-### Bảng Student
-```sql
-CREATE TABLE Student (
-    MaSV TEXT PRIMARY KEY,
-    TenSV TEXT NOT NULL,
-    NgaySinh TEXT,
-    GioiTinh TEXT,
-    TenLop TEXT,
-    FOREIGN KEY(TenLop) REFERENCES Class(MaLop)
-)
-```
+-- Bảng Class
+CREATE TABLE IF NOT EXISTS Class (
+    MaLop VARCHAR(50) PRIMARY KEY,
+    TenLop VARCHAR(255)
+);
 
-### Bảng Score
-```sql
-CREATE TABLE Score (
-    MaDiem TEXT PRIMARY KEY,
-    MaSV TEXT,
-    DiemTK TEXT,
-    DiemGK TEXT,
-    DiemCK TEXT,
-    FOREIGN KEY(MaSV) REFERENCES Student(MaSV)
-)
-```
+-- Bảng Student
+CREATE TABLE IF NOT EXISTS Student (
+    MaSV INT PRIMARY KEY,
+    TenSV VARCHAR(255),
+    NgaySinh DATE,
+    GioiTinh VARCHAR(10),
+    TenLop VARCHAR(50),
+    FOREIGN KEY (TenLop) REFERENCES Class(MaLop)
+);
+
+-- Bảng Scores
+CREATE TABLE IF NOT EXISTS Scores (
+    MaSV INT PRIMARY KEY,
+    Toan FLOAT,
+    Van FLOAT,
+    Anh FLOAT,
+    FOREIGN KEY (MaSV) REFERENCES Student(MaSV)
+);
 
 ## 🚀 Hướng Dẫn Sử Dụng
 
