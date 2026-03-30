@@ -7,12 +7,12 @@ from model import class_model
 def open_student():
     root = tk.Tk()
     root.title("Quản lý Sinh viên")
-    root.geometry("950x550")
+    root.geometry("1300x600")
     root.configure(bg="#f0f2f5")
 
     # ===== MAIN FRAME =====
     main_frame = tk.Frame(root, bg="white", padx=15, pady=15, bd=1, relief="solid")
-    main_frame.place(relx=0.5, rely=0.5, anchor="center", width=900, height=500)
+    main_frame.place(relx=0.5, rely=0.5, anchor="center", width=1250, height=550)
 
     # ===== TITLE =====
     tk.Label(main_frame, text="QUẢN LÝ SINH VIÊN",
@@ -29,6 +29,13 @@ def open_student():
     tree.heading("NgaySinh", text="Ngày sinh")
     tree.heading("GioiTinh", text="Giới tính")
     tree.heading("Lop", text="Lớp")
+
+    # Set column widths
+    tree.column("MaSV", width=100)
+    tree.column("Ten", width=150)
+    tree.column("NgaySinh", width=120)
+    tree.column("GioiTinh", width=100)
+    tree.column("Lop", width=100)
 
     tree.pack(fill=tk.BOTH, expand=True, pady=10)
 
